@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conexión Social</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        :root {
+            --bg-1: #a2c2e2;
+            --bg-2: #f4e2d8;
+            --card: rgba(255, 255, 255, 0.95);
+            --accent: #2a4d69;
+            --muted: #666;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+            color: #222;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            animation: fadeIn 0.9s ease-in;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 28px auto;
+            padding: 18px;
+        }
+
+        header {
+            text-align: center;
+            padding: 26px;
+            background: var(--card);
+            border-radius: 10px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 6px 18px rgba(12, 20, 30, 0.05);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: var(--accent)
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: var(--muted)
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            margin-top: 18px;
+        }
+
+        .content {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 26px;
+            box-shadow: 0 6px 18px rgba(12, 20, 30, 0.06);
+            min-height: 420px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(12, 20, 30, 0.04);
+            height: fit-content;
+            align-self: start;
+        }
+
+        .sidebar h3 {
+            color: var(--accent);
+            margin: 0 0 12px
+        }
+
+        .link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 12px;
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: transparent;
+            transition: all .18s ease;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-3px)
+        }
+
+        .panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all .28s ease;
+        }
+
+        .panel.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            color: var(--accent);
+            margin-top: 0
+        }
+
+        p {
+            line-height: 1.6;
+            color: #333
+        }
+
+        ul {
+            margin: 0 0 12px 20px
+        }
+
+        li {
+            margin: 8px 0
+        }
+
+        footer {
+            margin-top: 18px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        img.img-fluid {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 12px
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @media (max-width:900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: 3
+            }
+        }
+
+        .formulario-reseña {
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 25px;
+            background: #ffffffcc;
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            animation: aparecer 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .formulario-reseña h2 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .formulario-reseña label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .formulario-reseña input,
+        .formulario-reseña textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            background: #f2f2f2;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .formulario-reseña textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .formulario-reseña input:focus,
+        .formulario-reseña textarea:focus {
+            background: #e8e8e8;
+            transform: scale(1.02);
+        }
+
+        .formulario-reseña button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            background: #6a5acd;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 18px rgba(106, 90, 205, 0.4);
+        }
+
+        .formulario-reseña button:hover {
+            background: #5949c4;
+            transform: translateY(-3px);
+        }
+
+        .formulario-reseña button:active {
+            transform: scale(0.98);
+        }
+
+        /* Animación del formulario */
+        @keyframes aparecer {
+            0% {
+                transform: translateY(35px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .formulario-info {
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 25px;
+            background: #ffffffcc;
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            animation: aparecer-info 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .formulario-info h2 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .formulario-info label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .formulario-info input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            background: #f2f2f2;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .formulario-info input:focus {
+            background: #e8e8e8;
+            transform: scale(1.02);
+        }
+
+        .formulario-info button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            background: #00b894;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 18px rgba(0, 184, 148, 0.4);
+        }
+
+        .formulario-info button:hover {
+            background: #009d80;
+            transform: translateY(-3px);
+        }
+
+        .formulario-info button:active {
+            transform: scale(0.98);
+        }
+
+        /* Animación */
+        @keyframes aparecer-info {
+            0% {
+                transform: translateY(35px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <h1>Healthy lifestyles</h1>
+            <h1>Social Connection</h1>
+            <p>The power of relationships and how they connect us.</p>
+            <p>Made by Sergio Ibarra.</p>
+        </header>
+        <main>
+            <section class="content" aria-live="polite">
+                <article id="panel-intro" class="panel visible" role="article" aria-labelledby="intro-title">
+                    <img src="cbtis.jpg" alt="types"
+                        style="width:100px; float:right; margin-right:20px; border-radius:100px;">
+                    <h1>Introduction</h1>
+                    <h2 id="intro-title">What is social connection?</h2>
+                    <p>
+                        Social connection is the experience of feeling closeness, belonging, and union with others; it
+                        involves feeling cared for, valued, and understood. It is a fundamental human need that
+                        manifests through meaningful relationships with family, friends, colleagues, and the community.
+                    </p>
+                    <h3>Key components</h3>
+                    <ul>
+                        <li><strong>Sense of belonging:</strong> feeling part of a group.</li>
+                        <li><strong>Mutual support:</strong> having people to rely on.</li>
+                        <li><strong>Care and acceptance:</strong> being valued for who we are.</li>
+                    </ul>
+                    <img src="familia.jpg" alt="types"
+                        style="width:550px; float:right; margin-right:70px; border-radius:10px;">
+
+                </article>
+
+                <article id="panel-importancia" class="panel" role="article" aria-labelledby="importancia-title">
+                    <h2 id="importancia-title">The Importance of Social Relationships</h2>
+                    <section>
+                        <h2>Physical and Mental Health</h2>
+                        <p>Social relationships are important because they contribute to mental and physical health,
+                            personal development,
+                            and a sense of belonging and well-being. They strengthen health by reducing stress and
+                            increasing resilience, while lack of social connection can have negative health
+                            consequences. Socializing fosters cognitive ability and the learning of social skills
+                            essential for adaptation and community life.</p>
+
+                        <h3>Stress Reduction</h3>
+                        <p>Supportive relationships act as a buffer against stress, helping to process emotions and
+                            reduce tension.</p>
+
+                        <h3>General Well-being</h3>
+                        <p>Connection with others generates feelings of being loved and valued, which is vital for
+                            emotional well-being.</p>
+
+                        <h3>Longevity</h3>
+                        <p>Social isolation is associated with a higher risk of premature death, heart attacks, strokes,
+                            and other health problems.</p>
+                    </section>
+
+                    <section>
+                        <h2>Cognitive and Personal Development</h2>
+                        <h3>Mental Stimulation</h3>
+                        <p>Maintaining social relationships helps exercise language, memory, planning ability, and
+                            empathy.</p>
+
+                        <h3>Skill Development</h3>
+                        <p>Through social interaction, we learn to adapt to different contexts and develop appropriate
+                            social behaviors.</p>
+                        <h3>Self-esteem Strengthening</h3>
+                        <p>Friendships and supportive relationships are fundamental for developing self-esteem,
+                            confidence, and self-assurance.</p>
+                    </section>
+
+                    <section>
+                        <h2>Sense of Belonging</h2>
+                        <h3>Purpose and Meaning</h3>
+                        <p>Social support can give life a greater sense of purpose and meaning.</p>
+
+                        <h3>Happiness and Vitality</h3>
+                        <p>Positive social bonds influence our well-being, making us feel happier and more vital.</p>
+                        <h3>Connection and Community</h3>
+                        <p>The desire to connect with others is an innate human need that allows us to be part of a
+                            community.</p>
+                        <img src="importancia.jpg" style="height:350px;" class="img-thumbnail" alt="importancia">
+                    </section>
+                </article>
+                <article id="panel-beneficios-fisicos" class="panel" role="article"
+                    aria-labelledby="beneficios-fisicos-title">
+                    <h2 id="beneficios-fisicos-title">Physical Benefits</h2>
+                    <h2 id="beneficios-fisicos-secundario">Physical Benefits of Social Connection</h2>
+                    <p>
+                        <strong>Social connection</strong> offers significant physical benefits, such as strengthening
+                        the <em>immune system</em>, improving <em>cardiovascular health</em>, and reducing stress and
+                        inflammation. It also promotes healthy habits, increases life expectancy, and contributes to
+                        healthier aging, preventing cognitive problems like dementia.
+                    </p>
+                    <h3>Main Benefits</h3>
+                    <ul>
+                        <li>
+                            <strong>Strengthens the immune system:</strong> strong relationships increase resistance to
+                            diseases and reduce the impact of stress.
+                        </li>
+                        <li>
+                            <strong>Improves cardiovascular health:</strong> social connection is associated with better
+                            heart health, especially in older adults.
+                        </li>
+                        <li>
+                            <strong>Reduces stress and inflammation:</strong> social contact releases oxytocin and
+                            dopamine, decreasing cortisol and pain.
+                        </li>
+                        <li>
+                            <strong>Promotes healthy habits:</strong> encourages positive behaviors such as good
+                            nutrition and physical activity.
+                        </li>
+                        <li>
+                            <strong>Increases life expectancy:</strong> socially connected people tend to live longer.
+                        </li>
+                        <li>
+                            <strong>Contributes to healthy aging:</strong> reduces the risk of cognitive decline and
+                            dementia.
+                        </li>
+                        <li>
+                            <strong>Relieves pain:</strong> social contact, even physical, can reduce perceived pain.
+                        </li>
+                    </ul>
+                </article>
+
+                <article id="panel-impacto-fisico" class="panel" role="article" aria-labelledby="impacto-fisico-title">
+                    <h2 id="impacto-fisico-title">Impact of Social Connection on Physical Health</h2>
+                    <section>
+                        <h2>Physical and Mental Well-being</h2>
+                        <p>
+                            Social connection directly influences physical and mental health. It reduces stress,
+                            protects against heart disease, and strengthens immune response. The absence of social ties
+                            can lead to health problems such as chronic inflammation, anxiety, or cognitive decline.
+                        </p>
+                        <h3>Stress Reduction</h3>
+                        <p>Supportive relationships act as an emotional buffer, reducing tension and anxiety.</p>
+                        <h3>Overall Well-being</h3>
+                        <p>Feeling valued and accompanied improves emotional state and mental stability.</p>
+                        <h3>Longevity</h3>
+                        <p>Social isolation is associated with higher risk of premature death, heart attacks, and other
+                            complications.</p>
+                    </section>
+                    <section>
+                        <h2>Cognitive Health and Aging</h2>
+                        <h3>Cognitive Protection</h3>
+                        <p>Maintaining social contact stimulates memory, language, empathy, and attention, reducing the
+                            risk of mental decline.</p>
+                        <h3>Active Brain Function</h3>
+                        <p>Interacting with others keeps the brain active and promotes neuroplasticity.</p>
+                        <h3>Healthy Aging</h3>
+                        <p>Social relationships improve quality of life in old age and reduce the likelihood of
+                            dementia.</p>
+                    </section>
+                    <section>
+                        <h2>Support and Companionship</h2>
+                        <h3>Emotional Security</h3>
+                        <p>Social connections provide emotional stability and a deep sense of companionship.</p>
+                        <h3>Motivation and Energy</h3>
+                        <p>Positive interactions increase daily vitality and motivation.</p>
+                        <h3>Community and Belonging</h3>
+                        <p>Being part of a group satisfies the innate need for belonging and human connection.</p>
+                    </section>
+                </article>
+
+                <article id="panel-prevencion" class="panel" role="article" aria-labelledby="prevencion-title">
+                    <h2 id="prevencion-title">Social connection and depression prevention</h2>
+                    <p>
+                        <strong>Social connection</strong> prevents depression by offering a support network that helps
+                        cope with stress, reduce feelings of loneliness and improve overall mental health.
+                        This is achieved by participating in social activities, maintaining relationships of trust and
+                        providing support to others. However, it is important to be aware of the negative effects of
+                        social media, such as constant comparison, and prioritizing in-person interactions and
+                        own well-being.
+                    </p>
+                    <h3>Strategies for Using Social Connection in Prevention</h3>
+                    <ul>
+                        <li>
+                            <strong>Cultivate Meaningful Relationships:</strong> maintaining stable and supportive bonds
+                            with family and friends is essential for managing stressful situations.
+                        </li>
+                        <li>
+                            <strong>Seek Active Support:</strong> if you feel unwell, talking to someone you trust
+                            can relieve emotional burden and reduce stress.
+                        </li>
+                        <li>
+                            <strong>Participate in Social Activities:</strong> engaging in community or volunteer
+                            activities fosters a sense of belonging and purpose.
+                        </li>
+                        <li>
+                            <strong>Be Mindful of Social Media Use:</strong>
+                            <ul>
+                                <li><strong>Limit Time:</strong> set boundaries and disable notifications to avoid
+                                    dependency.</li>
+                                <li><strong>Avoid Comparisons:</strong> remember that social media often shows idealized
+                                    versions of life.</li>
+                                <li><strong>Prioritize the Real World:</strong> it is healthier to strengthen in-person
+                                    interactions, even when it requires effort.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Help Others:</strong> performing acts of kindness or altruism generates positive
+                            emotions and improves one's own well-being.
+                        </li>
+                    </ul>
+                </article>
+
+                <article id="panel-eradigital" class="panel" role="article" aria-labelledby="eradigital-title">
+                    <h2 id="eradigital-title">Social Connection in the Digital Age</h2>
+                    <p>
+                        Social connection in the digital age allows people to interact and maintain bonds through online
+                        platforms, facilitating closeness even at a distance. However, the challenge of balancing
+                        virtual interactions with in-person ones also arises to avoid isolation and superficiality.
+                        Tools such as
+                        video calls and social networks have become essential, especially after the pandemic, which
+                        increased dependence on technology. Fostering meaningful connection requires
+                        conscious efforts to balance the digital and physical worlds through strategies such as
+                        virtual calls or online games.
+                    </p>
+                    <h3>Benefits of Social Connection in the Digital Age</h3>
+                    <ul>
+                        <li>
+                            <strong>Overcoming Distance:</strong> technology allows connecting with family and
+                            amigos en cualquier lugar del mundo, disminuyendo la sensación de aislamiento.
+                        </li>
+                        <li>
+
+                            <strong>Collaboration and Community:</strong> digital platforms facilitate the exchange of
+                            ideas, cultural interaction, and collaboration on personal or professional projects.
+                        </li>
+                        <li>
+                            <strong>Access to New Communities:</strong> it is possible to join online groups and
+                            communities with shared interests, which enriches social life; although it is important to
+                            complement it with physical interactions.
+                        </li>
+                    </ul>
+                    <h3>Challenges and Issues</h3>
+                    <ul>
+                        <li>
+                            <strong>Risk of Isolation and Superficiality:</strong> excessive reliance on digital
+                            interactions can lead to loneliness, anxiety, and less deep connections.
+                        </li>
+                        <li>
+                            <strong>Difference Between Virtual and In-Person Connection:</strong> digital communication
+                            lacks body language and emotional nuances, key elements in authentic relationships.
+                        </li>
+                        <li>
+                            <strong>Mental Health Impact:</strong> there is an ongoing debate about how constant digital
+                            exposure affects well-being and the quality of social relationships.
+                        </li>
+                    </ul>
+                    <h3>Strategies to Foster Social Connection</h3>
+                    <ul>
+                        <li>
+                            <strong>Establish a Balance:</strong> seek harmony between online activities and
+                            in-person experiences to maintain a healthy social life.
+                        </li>
+                        <li>
+                            <strong>Be Intentional with Communication:</strong> maintain regular contact with friends
+                            and
+                            family, even with brief calls or chats.
+                        </li>
+                        <li>
+                            <strong>Participate in Group Activities:</strong> join workshops, courses, or online groups
+                            that promote socializing and learning.
+                        </li>
+                        <li>
+                            <strong>Create Moments of Connection:</strong> organize “virtual coffees” or online games to
+                            strengthen bonds in a close and fun way.
+                        </li>
+                        <li>
+                            <strong>Invest in Face-to-Face Communication:</strong> prioritize in-person meetings
+                            whenever possible, as they are essential for emotional well-being.
+                        </li>
+                    </ul>
+                </article>
+
+                <article id="panel-fomentar" class="panel" role="article" aria-labelledby="fomentar-title">
+                    <h2 id="fomentar-title">How to Foster Social Connection</h2>
+                    <p>
+                        To strengthen <strong>social connection</strong>, it is important to dedicate quality time to
+                        people, practice active listening, communicate with empathy, and participate in group activities
+                        that are interesting. It is also useful to use technology to stay in touch, join a community or
+                        meaningful cause, and even consider adopting a pet
+                        for companionship and emotional support.
+                    </p>
+                    <h3>Communicate Actively</h3>
+                    <ul>
+                        <li>
+                            <strong>Practice Listening:</strong> allow the other person to finish speaking before
+                            responding and interrupt as little as possible.
+                        </li>
+                        <li>
+                            <strong>Ask Open-Ended Questions:</strong> formulate questions that invite elaborate answers
+                            and keep the conversation flowing.
+                        </li>
+                        <li>
+                            <strong>Be Empathetic:</strong> try to understand others' perspectives, set aside
+                            prejudices, and show respect in every interaction.
+                        </li>
+                    </ul>
+                    <h3>Participate in Activities</h3>
+                    <ul>
+                        <li>
+                            <strong>Join Groups:</strong> participate in clubs, classes, or events that interest you to
+                            meet people with similar tastes.
+                        </li>
+                        <li>
+                            <strong>Volunteer:</strong> collaborating on community causes fosters a sense of purpose and
+                            connection.
+                        </li>
+                        <li>
+                            <strong>Organize Gatherings:</strong> plan meals, picnics, or simple get-togethers to
+                            strengthen social bonds.
+                        </li>
+                    </ul>
+                    <h3>Use Technology and Other Resources</h3>
+                    <ul>
+                        <li>
+                            <strong>Stay Digitally Connected:</strong> use video calls, messages, or social media to
+                            connect with family and friends.
+                        </li>
+                        <li>
+                            <strong>Consider a Pet:</strong> adopting an animal can provide companionship, comfort, and
+                            reduce stress.
+                        </li>
+                        <li>
+                            <strong>Connect with Your Community:</strong> take advantage of resources from libraries,
+                            community centers, or senior spaces to find activities.
+                        </li>
+                    </ul>
+                    <h3>Foster Connection in Your Environment</h3>
+                    <ul>
+                        <li>
+                            <strong>Strengthen Existing Bonds:</strong> dedicate quality time to important people and
+                            strive to maintain constant communication.
+                        </li>
+                        <li>
+                            <strong>Get to Know Your Neighbors:</strong> a friendly environment facilitates natural
+                            interactions and close relationships.
+                        </li>
+                        <li>
+                            <strong>Create a Sense of Belonging:</strong> at work, whether in-person or remote,
+                            participate in activities that strengthen team cohesion.
+                        </li>
+                    </ul>
+                </article>
+
+                <article id="panel-ejemplos" class="panel" role="article" aria-labelledby="ejemplos-title">
+                    <h2 id="ejemplos-title">Examples of Social Connection</h2>
+                    <section>
+                        <h2>Social Connectedness</h2>
+                        <p>
+                            "Social connectedness" refers to the bond, union, or close relationship between different
+                            elements, situations, or people within the social or legal sphere,
+                            that justifies joint or related treatment.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>General Social Sphere</h2>
+                        <h3>Family Relationships</h3>
+                        <p>
+                            The bonds between parents, children, siblings, and other relatives create a fundamental
+                            social connectedness,
+                            influencing mutual support, inheritance, and
+                            legal and moral responsibility.
+                        </p>
+                        <h3>Community and Belonging</h3>
+                        <p>
+                            Feeling part of a group, such as a neighborhood, a sports club, or a religious community,
+                            creates a social connectedness that fosters
+                            solidarity and empathy among its members.
+                        </p>
+                        <h3>Work Relationships</h3>
+                        <p>
+                            The bond between coworkers or between employees and employers, which can lead to joint
+                            actions such as collective bargaining
+                            or collaborative projects.
+                        </p>
+                        <h3>Social Networks (Digital and Physical)</h3>
+                        <p>
+                            Connection through online platforms or groups of friends in real life allows for
+                            the dissemination of information, emotional support, and
+                            coordination of activities.
+                        </p>
+                        <p><strong>If you want to train your social skills, click the image to watch a YouTube video and
+                                learn more about the topic:</strong></p>
+
+                        <a href="https://youtu.be/I5aM98n985c?si=w8nu1kXj5FNXp-zR" style="height:350px;"
+                            class="img-thumbnail" target="_blank">
+                            <img src="ejemplos.jpg" alt="cbtis" width="350" style="border-radius: 15px;">
+                        </a>
+
+
+                    </section>
+                </article>
+                <article id="panel-conclusion" class="panel" role="article" aria-labelledby="conclusion-title">
+                    <h2 id="conclusion-title">Conclusion</h2>
+                    <p>
+                        Social connectedness is an essential component of a healthy lifestyle. It not only improves
+                        our physical and mental health but also contributes to our happiness and longevity.
+                    </p>
+                    <p>
+                        Fostering healthy relationships, participating in community activities, and using technology
+                        responsibly are effective ways to maintain and strengthen social bonds.
+                    </p>
+                    <section>
+                        <h2>Importance of Social Connectedness</h2>
+                        <p>
+                            Social connectedness is fundamental to health and well-being, as strong ties with others
+                            are associated with longer, healthier lives,
+                            better mental and physical health, and greater community resilience. The conclusion is that,
+                            while
+                            connection is a basic human need,
+                            social networks and communities with strong ties play a crucial role in the
+                            development and maintenance of healthy connections
+                            for individuals. Investing in social connection is essential for both individual and
+                            collective well-being, as disconnection can lead
+                            to serious health problems and a lack of a sense of community.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Social Connectedness and Well-being</h2>
+                        <h3>Physical and Mental Health</h3>
+                        <p>
+                            Strong social connections are associated with increased life expectancy and lower incidence
+                            of diseases such as heart disease,
+                            stroke, anxiety, depression, and dementia.
+                        </p>
+                        <h3>Resilience and Prosperity</h3>
+                        <p>
+                            A society with strong social ties is more resilient to crises and has greater economic
+                            prosperity.
+                        </p>
+                        <h3>Sense of Belonging</h3>
+                        <p>
+                            Social connectedness provides a sense of purpose, belonging, and support, which enhances
+                            happiness and overall well-being.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Social Disconnection</h2>
+                        <h3>Negative Consequences</h3>
+                        <p>
+                            Social disconnection, which can manifest as loneliness (a subjective feeling) or
+                            social isolation (lack of contact), is associated
+                            with a higher risk of physical and mental health problems.
+                        </p>
+                        <h3>Impact of Loneliness</h3>
+                        <p>
+                            Chronic loneliness can cause emotional pain and stress responses that lead to
+                            chronic inflammation and reduced immunity,
+                            aumentando el riesgo de enfermedades crónicas.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Recommendations</h2>
+                        <h3>Prioritize Relationships</h3>
+                        <p>
+                            It is recommended to invest time and effort in building and maintaining strong relationships
+                            with
+                            family, friends, and the community at large.
+                        </p>
+                        <h3>Use Social Media Responsibly</h3>
+                        <p>
+                            It is vital to promote conscious and responsible use of social media, setting
+                            time limits and configuring privacy settings
+                            to protect the digital footprint.
+                        </p>
+                        <h3>Promote Connection</h3>
+                        <p>
+                            Social connection should be promoted as a pillar of overall well-being, recognizing its
+                            importance for public health and social cohesion.
+                        </p>
+                    </section>
+                </article>
+            </section>
+
+            <aside class="sidebar" aria-label="Section Navigation">
+                <h3>Explore</h3>
+                <button class="link" data-target="panel-importancia"
+                    aria-controls="panel-importancia">Importance</button>
+                <button class="link" data-target="panel-beneficios-fisicos"
+                    aria-controls="panel-beneficios-fisicos">Physical Benefits</button>
+                <button class="link" data-target="panel-prevencion" aria-controls="panel-prevencion">Depression
+                    Prevention</button>
+                <button class="link" data-target="panel-eradigital" aria-controls="panel-eradigital">Social Connection
+                    in the Digital Age</button>
+                <button class="link" data-target="panel-fomentar" aria-controls="panel-fomentar">How to Foster Social
+                    Connection</button>
+                <button class="link" data-target="panel-ejemplos" aria-controls="panel-ejemplos">Examples</button>
+                <button class="link" data-target="panel-conclusion" aria-controls="panel-conclusion">Conclusion</button>
+                <div style="margin-top:18px;">
+                    <a class="btn" href="#" onclick="showPanel('panel-intro');return false;">Back to Start</a>
+                </div>
+            </aside>
+
+        </main>
+
+        <footer>
+            <a href="conexion.html" class="btn">Spanish Version</a>
+            <a href="mentalingles.html" target="_blank" class="btn" style="background:#47147e">What is Mental
+                Rest?</a>
+           <!--<a href="quieressaber.html" target="_blank" class="btn" style="background:#972cb8">Do you want to know
+                more?</a>-->
+        </footer>
+
+
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.sidebar .link');
+        const panels = document.querySelectorAll('.panel');
+
+        function showPanel(id) {
+            panels.forEach(p => {
+                if (p.id === id) {
+                    p.classList.add('visible');
+                    p.setAttribute('aria-hidden', 'false');
+                } else {
+                    p.classList.remove('visible');
+                    p.setAttribute('aria-hidden', 'true');
+                }
+            });
+            const visible = document.querySelector('#' + id + ' h1, #' + id + ' h2');
+            if (visible) visible.focus?.();
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                showPanel(target);
+            });
+        });
+        showPanel('panel-intro');
+    </script>
+</body>
+
+</html>

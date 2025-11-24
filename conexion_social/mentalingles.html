@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mental Rest</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #e8f0fe;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background: #4c6ef5;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    color: white;
+    animation: slideIn 0.8s ease;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.nav-btn {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 12px;
+    background: #748ffc;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background: #b197fc;
+    transform: scale(1.05);
+}
+
+.nav-btn:active {
+    background: #9775fa;
+    transform: scale(0.95);
+}
+
+.content {
+    margin-left: 260px;
+    padding: 20px 40px;
+    flex: 1;
+    animation: fadeIn 1s ease;
+}
+
+h1 {
+    color: #364fc7;
+    animation: fadeDown 1s ease;
+}
+
+.section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: popIn 0.6s ease;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form label {
+    font-weight: bold;
+    color: #364fc7;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #cdd3ff;
+    margin-top: 5px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border-color: #748ffc;
+    outline: none;
+    box-shadow: 0 0 8px rgba(116, 143, 252, 0.5);
+}
+
+button[type="submit"] {
+    padding: 12px 20px;
+    background: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: #5c7cfa;
+    transform: scale(1.05);
+}
+
+button[type="submit"]:active {
+    background: #364fc7;
+    transform: scale(0.95);
+}
+
+.bottom-buttons {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.bottom-buttons a {
+    padding: 12px 20px;
+    background: #4c6ef5;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.bottom-buttons a:hover {
+    background: #5c7cfa;
+    transform: scale(1.05);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
+
+<script>
+function showSection(id) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+</script>
+</head>
+
+<body>
+<div class="sidebar">
+    <h2>Menu</h2>
+    <div class="nav-btn" onclick="showSection('ej1')">What is mental rest?</div>
+    <div class="nav-btn" onclick="showSection('ej2')">Types of mental rest</div>
+    <div class="nav-btn" onclick="showSection('ej3')">Benefits of mental rest</div>
+    <div class="nav-btn" onclick="showSection('ej4')">Techniques to rest the mind</div>
+    <div class="nav-btn" onclick="showSection('ej5')">How stress affects the mind</div>
+    <div class="nav-btn" onclick="showSection('ej6')">Mental rest in adolescents</div>
+
+</div>
+
+<div class="content">
+    <h1>Mental Rest</h1>
+
+    <!-- seccion 1 -->
+    <div id="ej1" class="section">
+        <h2><strong>The Mental Rest</strong></h2>
+       <p>
+    <strong>Mental rest</strong> is a state of calm and relaxation that allows the brain to recover from the exhaustion caused by constant cognitive activities such as thinking, planning, or worrying.
+    It consists of taking breaks to silence the <em>"mental noise"</em>, disconnecting from external demands, and reducing stress.
+    Practices such as meditation, taking short breaks, disconnecting from screens, or keeping a journal can help achieve it.
+</p>
+
+<h3><strong>Characteristics and benefits of mental rest</strong></h3>
+<ol>
+    <li><strong>Cognitive recovery:</strong> Allows the brain to recover from continuous information processing and take a break from concentration and decision-making.</li>
+    <li><strong>Stress reduction:</strong> Helps release accumulated tension and reduce stress and anxiety caused by daily worries.</li>
+    <li><strong>Improved creativity:</strong> When resting, the mind can find inspiration and new solutions, especially after a period of intense preparation or mental exhaustion, according to the Graham Wallas model.</li>
+    <li><strong>Increased productivity:</strong> Taking breaks helps improve concentration and long-term productivity, preventing burnout.</li>
+    <li><strong>Greater clarity:</strong> Promotes mental clarity, allowing for better perspective in work and life.</li>
+</ol>
+
+<h3><strong>How to practice mental rest?</strong></h3>
+<ol>
+    <li><strong>Take active breaks:</strong> Take short pauses throughout the day, switch from exhausting tasks to simpler ones like folding clothes, or go for a walk.</li>
+    <li><strong>Disconnect from screens:</strong> Avoid using electronic devices, especially before sleeping, to reduce information overload and stress.</li>
+    <li><strong>Practice mindfulness:</strong> Spend a few minutes meditating or doing deep breathing to focus your attention on the present and bodily sensations.</li>
+    <li><strong>Keep a journal:</strong> Writing down your thoughts can help you externalize them and give your mind a chance to relax.</li>
+    <li><strong>Look for pleasurable activities:</strong> Engage in hobbies that allow your mind to “wander” and that you find relaxing, such as completing a puzzle.</li>
+</ol>
+
+<div style="display: flex; align-items: center; gap: 20px;">
+    <p>
+        <strong>Mental rest in teenagers</strong> is essential for their physical and mental health.
+        It is mainly achieved by ensuring <strong>8 to 10 hours of nighttime sleep</strong>
+        and maintaining healthy routines.
+        It is recommended to set regular sleep schedules, avoid electronic devices and caffeine before sleeping,
+        and encourage daily physical activity and relaxation.
+    </p>
+</div>
+
+<div style="text-align: center;">
+    <img src="quees.jpg" alt="what is mental rest" style="width:350px; border-radius:10px;">
+</div>
+</div>
+
+   <!-- seccion 2 -->
+<div id="ej2" class="section" style="display:none;">
+    <img src="tipo.jpg" alt="types" style="width:155px; float:left; margin-right:20px; border-radius:10px;">
+    <h2><strong>Types of Mental Rest</strong></h2>
+    <p>
+        The <strong>types of mental rest</strong> include active and passive mental rest,
+        achieved through breaks, meditation, mindfulness practice,
+        technological disconnection, and reducing sensory overload.
+        For complete rest, other types are also recommended such as <strong>physical</strong> (sleep),
+        <strong>creative</strong> (hobbies), <strong>social</strong> (spending time with loved ones),
+        and <strong>spiritual</strong> (gratitude or connection with nature).
+    </p>
+
+    <h3><strong>Active and Passive Mental Rest</strong></h3>
+    <ol>
+        <li><strong>Active:</strong> Engage in hobbies such as drawing, reading, writing, or listening to music to stimulate the mind in a pleasant way.</li>
+        <li><strong>Passive:</strong> Take short breaks during the day, practice deep breathing, meditate, or let the mind wander through relaxing activities such as enjoying the outdoors.</li>
+    </ol>
+
+    <h3><strong>Sensory Overload Rest</strong></h3>
+    <ol>
+        <li><strong>Limit exposure</strong> to screens and noise to reduce visual and auditory fatigue.</li>
+        <li><strong>Create a calm environment</strong> that is uncluttered to allow the senses to relax.</li>
+    </ol>
+
+    <h3><strong>Rest from Constant Stimulation</strong></h3>
+    <ol>
+        <li><strong>Disconnect from work or school</strong> to avoid the buildup of mental stress.</li>
+        <li><strong>Put away electronic devices</strong> at least one hour before sleeping.</li>
+    </ol>
+
+    <h3><strong>Other Types of Rest for Overall Well-Being</strong></h3>
+    <ol>
+        <li><strong>Physical rest:</strong> Getting enough sleep, taking naps, exercising, stretching, or receiving massages.</li>
+        <li><strong>Creative rest:</strong> Doing activities that nurture inspiration such as art, music, or connecting with nature.</li>
+        <li><strong>Social rest:</strong> Spending time with people who provide positive energy and limiting contact with those who drain it.</li>
+        <li><strong>Spiritual rest:</strong> Meditating, practicing gratitude, or connecting with a meaningful purpose or with nature.</li>
+    </ol>
+</div>
+
+
+ <!-- seccion 3 -->
+<div id="ej3" class="section" style="display:none;">
+    <h2><strong>Benefits of Mental Rest</strong></h2>
+
+    <p>
+        <strong>Mental rest</strong> benefits mental health by reducing stress, improving mood,
+        and increasing mental clarity and concentration. It also provides physical benefits such as better
+        cognitive functioning, memory consolidation, metabolism regulation, and reduced inflammation.
+        Additionally, it helps prevent physical and emotional exhaustion associated with the <em>burnout syndrome</em>.
+    </p>
+
+    <img src="fortaleceer.jpg" alt="fortalecer" style="width:155px; float:right; margin-left:20px; border-radius:10px;">
+
+    <h3><strong>Benefits for Mental and Cognitive Health</strong></h3>
+
+    <ol>
+        <li><strong>Reduces stress:</strong> Allows the brain to recover and process daily experiences, decreasing stress levels.</li>
+        <li><strong>Improves mood:</strong> Contributes to a more positive mental state and better relationships with others.</li>
+        <li><strong>Increases concentration and clarity:</strong> Helps you think more clearly, focus better, and make more effective decisions.</li>
+        <li><strong>Strengthens memory:</strong> Supports the consolidation and processing of memories, which is crucial for long-term memory.</li>
+    </ol>
+
+    <h3><strong>Physical Benefits</strong></h3>
+    <ol>
+        <li><strong>Improves metabolism:</strong> Adequate rest can positively influence its functioning, reducing the risk of diseases.</li>
+        <li><strong>Reduces inflammation:</strong> Getting enough sleep is linked to decreased inflammation in the body.</li>
+        <li><strong>Prevents exhaustion:</strong> Reduces the likelihood of developing <em>burnout</em>, characterized by extreme fatigue and lack of motivation.</li>
+    </ol>
+
+    <h3><strong>How to Incorporate Mental Rest</strong></h3>
+    <ol>
+        <li><strong>Schedule breaks:</strong> Include short, regular pauses during mentally demanding activities.</li>
+        <li><strong>Switch tasks:</strong> Alternate challenging tasks with simpler ones like folding clothes or solving a puzzle.</li>
+        <li><strong>Write in a journal:</strong> Writing down thoughts helps “unload” the mind and reduce overthinking.</li>
+        <li><strong>Practice mindfulness:</strong> Meditation or focusing on physical sensations to calm the mind.</li>
+        <li><strong>Disconnect from stimuli:</strong> Close your eyes, avoid bright screens, or step away from electronic devices to give your nervous system a break.</li>
+    </ol>
+</div>
+
+
+ <!-- seccion 4 -->
+<div id="ej4" class="section" style="display:none;">
+    <h2><strong>Techniques to Rest the Mind</strong></h2>
+    <p>
+        To <strong>rest the mind</strong>, you can use relaxation techniques such as <strong>deep breathing</strong> and <strong>meditation</strong>,
+        focused on mindfulness and calmness.
+        Other helpful activities include physical exercise (yoga or tai chi), free writing to release thoughts,
+        and sensory-based practices like aromatherapy, music therapy, or artistic activities such as painting.
+    </p>
+
+    <h3><strong>Physical and Mental Relaxation Techniques</strong></h3>
+    <ol>
+        <li><strong>Deep breathing:</strong> Sit or lie down, place one hand on your stomach and the other on your chest.
+            Inhale slowly through your nose until you feel your stomach rise, hold your breath for a moment, and exhale slowly as you feel it lower.</li>
+        <li><strong>Meditation:</strong> Reduces stress and self-criticism. You can start with guided meditations or <em>mindfulness</em> to focus your attention on the present and calm your mind.</li>
+        <li><strong>Yoga and Tai Chi:</strong> Both practices combine gentle movements with deep breathing to increase body awareness and release anxiety.</li>
+        <li><strong>Progressive muscle relaxation:</strong> Tense and then relax different muscle groups, starting from the feet and moving up to the head.</li>
+        <li><strong>Free writing:</strong> Spend a few minutes writing whatever comes to mind without judging or organizing. The goal is to release accumulated thoughts.</li>
+        <li><strong>Visualization exercises:</strong> Imagine relaxing places or situations: a white wall, a natural landscape, or a happy memory.</li>
+        <li><strong>Grounding:</strong> Walk barefoot on soil or grass for a few minutes to connect with the present and with nature.</li>
+    </ol>
+
+    <img src="meditacion.jpg" alt="meditacion" style="width:350px; float:right; margin-left:20px; border-radius:10px;">
+
+    <h3><strong>Other Techniques</strong></h3>
+    <ol>
+        <li><strong>Creative activities:</strong> Painting, drawing, or listening to music can relax the mind and reduce stress.</li>
+        <li><strong>Warm baths or massages:</strong> Help relax both the body and the mind.</li>
+        <li><strong>Aromatherapy:</strong> Use essential oils like lavender to create a calming environment.</li>
+        <li><strong>Short breaks:</strong> Throughout the day, take two-minute breaks to observe your breathing or simply look around without using your phone.</li>
+        <li><strong>Organize your thoughts:</strong> Once a week, set aside time to organize your tasks to “unload” your mind and be more present.</li>
+    </ol>
+</div>
+
+
+    <!-- seccion 5 -->
+<div id="ej5" class="section" style="display:none;">
+    <h2><strong>Effects of Stress on the Mind</strong></h2>
+    <p>
+        <strong>Stress</strong> affects the mind by interfering with cognitive functions such as concentration,
+        memory, and decision-making.
+        It can also lead to mental health issues like <strong>anxiety</strong> and <strong>depression</strong>.
+        Chronic stress disrupts executive functions of the brain, affects mood, and alters sleep patterns.
+    </p>
+
+    <img src="estres.jpg" alt="stress" style="width:350px; float:right; margin-left:20px; border-radius:10px;">
+
+    <h3><strong>Impacts of Stress on the Mind</strong></h3>
+    <ol>
+        <li><strong>Cognitive function:</strong> Makes concentration, working memory, and decision-making more difficult, creating a sense of <em>"mental block"</em>.</li>
+        <li><strong>Mental health:</strong> Contributes to the development of disorders such as anxiety and depression.</li>
+        <li><strong>Emotional regulation:</strong> Increases irritability, bad mood, and reduces patience.</li>
+        <li><strong>Brain health:</strong> Chronic stress affects mental flexibility, creativity, and the areas of the brain responsible for memory and learning.</li>
+        <li><strong>Sleep:</strong> Makes it harder to fall asleep and maintain restful sleep, which worsens mood and thinking.</li>
+    </ol>
+
+    <h3><strong>How Stress Affects the Brain</strong></h3>
+    <ol>
+        <li>Stress activates an alarm system in the brain, releasing hormones such as <strong>cortisol</strong>.</li>
+        <li>Cortisol affects the <strong>hippocampus</strong>, a key area for memory, and the <strong>prefrontal cortex</strong>, responsible for executive functions like planning and concentration.</li>
+        <li>When stress becomes chronic, these hormones damage neurons and reduce the brain’s ability to adapt, thus affecting cognitive functions.</li>
+    </ol>
+</div>
+
+   <!-- seccion 6 -->
+<div id="ej6" class="section" style="display:none;">
+    <img src="jovenessindormir.jpg" alt="rest" style="width:250px; float:left; margin-right:20px; border-radius:10px;">
+    
+    <h2><strong>Mental Rest in Teenagers</strong></h2>
+    <p>
+        <strong>Mental rest in teenagers</strong> is essential for their physical and mental health.
+        It is mainly achieved by ensuring <strong>8 to 10 hours of nighttime sleep</strong>
+        and maintaining healthy routines.
+        It is recommended to establish regular sleep schedules, avoid electronic devices and caffeine before bedtime,
+        and promote physical activity and daily relaxation.
+    </p>
+
+    <h3><strong>Strategies for Mental Rest</strong></h3>
+
+    <h4><strong>Sleep</strong></h4>
+    <ol>
+        <li><strong>Duration:</strong> Sleep between <strong>8 and 10 hours</strong> per night to support the rapid development of the body and brain.</li>
+        <li><strong>Routine:</strong> Set regular times to go to bed and wake up every day, even on weekends.</li>
+        <li><strong>Environment:</strong> Create a suitable environment: dark, cool, and quiet room.</li>
+        <li><strong>Disconnection:</strong> Avoid screens at least one hour before sleeping. Blue light stimulates the mind and makes it harder to fall asleep. It is recommended to charge the phone outside the room.</li>
+    </ol>
+
+    <h4><strong>Lifestyle</strong></h4>
+    <ol>
+        <li><strong>Physical activity:</strong> Stay active during the day, avoiding intense exercise close to bedtime.</li>
+        <li><strong>Nutrition:</strong> Avoid caffeine in the afternoon or evening (coffee, tea, soda, and chocolate).</li>
+    </ol>
+
+    <h4><strong>Routine and Relaxation</strong></h4>
+    <ol>
+        <li><strong>Mental disconnection:</strong> Create a nighttime relaxation ritual such as a warm bath, reading, or calming music.</li>
+        <li><strong>Time management:</strong> Organize schedules that include recreation and rest time to reduce stress and avoid academic overload.</li>
+    </ol>
+
+    <h3><strong>Benefits of Mental Rest</strong></h3>
+    <ol>
+        <li><strong>Improves academic performance.</strong></li>
+        <li><strong>Reduces irritability, anxiety, and other emotional problems.</strong></li>
+        <li><strong>Strengthens the ability to relate to others.</strong></li>
+        <li><strong>Long-term health:</strong> Helps maintain a healthy weight, protects cardiovascular health, and improves cognitive function.</li>
+    </ol>
+
+    <h3><strong>Family and Professional Support</strong></h3>
+    <ol>
+        <li><strong>Family support:</strong> Encourage an environment of dialogue, understanding, and emotional support.</li>
+        <li><strong>Professional help:</strong> If there are mental health issues or significant stress, it is important to see psychologists or psychiatrists, just as essential as going to a doctor for a physical problem.</li>
+    </ol>
+
+    <div class="bottom-buttons">
+        <a href="coneingles.html" target="_blank">What is social connection?</a>
+        <a href="mental.html">Spanish Version</a>
+    </div>
+</div>
+
+<!-- seccion 7 -->
+<div id="ej7" class="section" style="display:none;">
+
+    <h2><strong>Send Me Your Review</strong></h2>
+
+    <p>If you want to share your opinion, suggestions or thoughts, you can send me a review using this form:</p>
+
+    <form action="mailto:sergioarmando37515@gmail.com" method="POST" enctype="text/plain" style="max-width: 400px; margin: 0 auto;">
+
+        <label for="nombre"><strong>Name:</strong></label><br>
+        <input type="text" id="nombre" name="Name" required
+               style="width:100%; padding:10px; border-radius:10px; border:1px solid #ccc; margin-top:5px;"><br><br>
+
+        <label for="mensaje"><strong>Review:</strong></label><br>
+        <textarea id="mensaje" name="Review" rows="5" required
+                  style="width:100%; padding:10px; border-radius:10px; border:1px solid #ccc; margin-top:5px;"></textarea><br><br>
+
+        <button type="submit"
+                style="padding:10px 20px; border:none; border-radius:10px; background:#4A90E2; color:white; cursor:pointer; transition:0.3s;">
+            Send Review
+        </button>
+    </form>
+
+</div>
+
+</div>
+</body>
+</html>

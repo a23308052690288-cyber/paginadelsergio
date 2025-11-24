@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descanso Mental</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: #e8f0fe;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #4c6ef5;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            color: white;
+            animation: slideIn 0.8s ease;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-btn {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 12px;
+            background: #748ffc;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: #b197fc;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:active {
+            background: #9775fa;
+            transform: scale(0.95);
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 20px 40px;
+            flex: 1;
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            color: #364fc7;
+            animation: fadeDown 1s ease;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: popIn 0.6s ease;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        form label {
+            font-weight: bold;
+            color: #364fc7;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #cdd3ff;
+            margin-top: 5px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #748ffc;
+            outline: none;
+            box-shadow: 0 0 8px rgba(116, 143, 252, 0.5);
+        }
+
+        button[type="submit"] {
+            padding: 12px 20px;
+            background: #4c6ef5;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: #5c7cfa;
+            transform: scale(1.05);
+        }
+
+        button[type="submit"]:active {
+            background: #364fc7;
+            transform: scale(0.95);
+        }
+
+        .bottom-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .bottom-buttons a {
+            padding: 12px 20px;
+            background: #4c6ef5;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .bottom-buttons a:hover {
+            background: #5c7cfa;
+            transform: scale(1.05);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <div class="nav-btn" onclick="showSection('ej1')">¿Qué es el descanso mental?</div>
+        <div class="nav-btn" onclick="showSection('ej2')">Tipos de descanso mental</div>
+        <div class="nav-btn" onclick="showSection('ej3')">Beneficios del descanso mental</div>
+        <div class="nav-btn" onclick="showSection('ej4')">Técnicas para descansar la mente</div>
+        <div class="nav-btn" onclick="showSection('ej5')">Cómo afecta el estrés a la mente</div>
+        <div class="nav-btn" onclick="showSection('ej6')">Descanso mental en adolescentes</div>
+    </div>
+
+    <div class="content">
+        <h1>Descanso Mental</h1>
+
+        <!-- seccion 1 -->
+        <div id="ej1" class="section">
+            <h2><strong>El descanso mental</strong></h2>
+            <p>
+                El <strong>descanso mental</strong> es un estado de calma y relajación que permite al cerebro
+                recuperarse del agotamiento causado por actividades cognitivas constantes como pensar, planear o
+                preocuparse.
+                Consiste en tomar pausas para silenciar el <em>"ruido mental"</em>, desconectar de las exigencias
+                externas y reducir el estrés.
+                Prácticas como la meditación, hacer pausas cortas, desconectar de pantallas o llevar un diario pueden
+                ayudar a lograrlo.
+            </p>
+
+            <h3><strong>Características y beneficios del descanso mental</strong></h3>
+            <ol>
+                <li><strong>Recuperación cognitiva:</strong> Permite que el cerebro se recupere del procesamiento
+                    continuo de información y tome un respiro de la concentración y toma de decisiones.</li>
+                <li><strong>Reducción del estrés:</strong> Ayuda a liberar la tensión acumulada y a disminuir los
+                    niveles de estrés y ansiedad causados por las preocupaciones diarias.</li>
+                <li><strong>Mejora de la creatividad:</strong> Al descansar, la mente puede encontrar inspiración y
+                    nuevas soluciones, especialmente después de un periodo de intensa preparación o agotamiento mental,
+                    según el modelo de Graham Wallas.</li>
+                <li><strong>Aumento de la productividad:</strong> Tomar descansos ayuda a mejorar la concentración y la
+                    productividad a largo plazo, evitando el agotamiento.</li>
+                <li><strong>Mayor claridad:</strong> Favorece la claridad mental, permitiendo una mejor perspectiva en
+                    el trabajo y en la vida.</li>
+            </ol>
+
+            <h3><strong>¿Cómo practicar el descanso mental?</strong></h3>
+            <ol>
+                <li><strong>Toma descansos activos:</strong> Haz pausas cortas durante el día, cambia de tareas
+                    agotadoras por otras más sencillas como doblar ropa, o sal a caminar.</li>
+                <li><strong>Desconecta de las pantallas:</strong> Evita el uso de dispositivos electrónicos,
+                    especialmente antes de dormir, para reducir la sobrecarga de información y el estrés.</li>
+                <li><strong>Practica la atención plena:</strong> Dedica unos minutos a la meditación o a la respiración
+                    profunda para enfocar tu atención en el presente y en las sensaciones corporales.</li>
+                <li><strong>Lleva un diario:</strong> Escribir tus pensamientos puede ayudarte a externalizarlos y darle
+                    a tu mente la oportunidad de relajarse.</li>
+                <li><strong>Busca actividades placenteras:</strong> Involúcrate en aficiones que te permitan “divagar” y
+                    que te resulten relajantes, como armar un rompecabezas.</li>
+            </ol>
+
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <p>
+                    El <strong>descanso mental en adolescentes</strong> es esencial para su salud física y mental.
+                    Se logra principalmente asegurando de <strong>8 a 10 horas de sueño nocturno</strong>
+                    y manteniendo rutinas saludables.
+                    Es recomendable establecer horarios de sueño regulares, evitar aparatos electrónicos y cafeína antes
+                    de dormir,
+                    y fomentar la actividad física y la relajación diaria.
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="quees.jpg" alt="que es el descanso mental" style="width:350px; border-radius:10px;">
+            </div>
+        </div>
+
+        <!-- seccion 2 -->
+        <div id="ej2" class="section" style="display:none;">
+            <img src="tipo.jpg" alt="tipos" style="width:155px; float:left; margin-right:20px; border-radius:10px;">
+            <h2><strong>Tipos de descanso mental</strong></h2>
+            <p>
+                Los <strong>tipos de descanso mental</strong> incluyen descanso mental activo y pasivo,
+                logrados mediante pausas, meditación, práctica de <em>mindfulness</em>,
+                desconexión tecnológica y reducción de la sobrecarga sensorial.
+                Para un descanso integral, también se recomiendan otros tipos como el <strong>físico</strong> (dormir),
+                <strong>creativo</strong> (pasatiempos), <strong>social</strong> (convivir con personas queridas)
+                y <strong>espiritual</strong> (gratitud o conexión con la naturaleza).
+            </p>
+
+            <h3><strong>Descanso mental activo y pasivo</strong></h3>
+            <ol>
+                <li><strong>Activo:</strong> Participar en pasatiempos como dibujar, leer, escribir o escuchar música
+                    para estimular la mente de manera placentera.</li>
+                <li><strong>Pasivo:</strong> Tomar pausas cortas durante el día, practicar la respiración profunda,
+                    meditar o dejar que la mente divague en actividades relajantes como disfrutar del aire libre.</li>
+            </ol>
+
+            <h3><strong>Descanso de la sobrecarga sensorial</strong></h3>
+            <ol>
+                <li><strong>Limitar la exposición</strong> a pantallas y ruido para reducir el agotamiento visual y
+                    auditivo.</li>
+                <li><strong>Crear un entorno tranquilo</strong> y despejado para permitir que los sentidos se relajen.
+                </li>
+            </ol>
+
+            <h3><strong>Descanso de la estimulación constante</strong></h3>
+            <ol>
+                <li><strong>Desconectar del trabajo o la escuela</strong> para evitar la acumulación de estrés mental.
+                </li>
+                <li><strong>Guardar dispositivos electrónicos</strong> al menos una hora antes de dormir.</li>
+            </ol>
+
+            <h3><strong>Otros tipos de descanso para el bienestar integral</strong></h3>
+            <ol>
+                <li><strong>Descanso físico:</strong> Dormir lo suficiente, tomar siestas, hacer ejercicio,
+                    estiramientos o recibir masajes.</li>
+                <li><strong>Descanso creativo:</strong> Realizar actividades que nutran la inspiración como arte, música
+                    o contacto con la naturaleza.</li>
+                <li><strong>Descanso social:</strong> Pasar tiempo con personas que brindan energía positiva y limitar
+                    el contacto con quienes la agotan.</li>
+                <li><strong>Descanso espiritual:</strong> Meditar, practicar gratitud o conectar con un propósito
+                    significativo o con la naturaleza.</li>
+            </ol>
+        </div>
+
+        <!-- seccion 3 -->
+        <div id="ej3" class="section" style="display:none;">
+            <h2><strong>Beneficios del descanso mental</strong></h2>
+
+            <p>
+                El <strong>descanso mental</strong> beneficia la salud mental al reducir el estrés, mejorar el estado de
+                ánimo
+                y aumentar la claridad mental y la concentración. También aporta beneficios físicos como un mejor
+                funcionamiento cognitivo, consolidación de la memoria, regulación del metabolismo y reducción de la
+                inflamación.
+                Además, ayuda a prevenir el agotamiento físico y emocional asociado al <em>síndrome de burnout</em>.
+            </p>
+
+            <img src="fortaleceer.jpg" alt="fortalecer"
+                style="width:155px; float:right; margin-left:20px; border-radius:10px;">
+
+            <h3><strong>Beneficios para la salud mental y cognitiva</strong></h3>
+
+            <ol>
+                <li><strong>Reduce el estrés:</strong> Permite que el cerebro se recupere y procese las experiencias del
+                    día, disminuyendo los niveles de estrés.</li>
+                <li><strong>Mejora el estado de ánimo:</strong> Contribuye a un estado mental más positivo y a una mejor
+                    relación con otras personas.</li>
+                <li><strong>Aumenta la concentración y claridad:</strong> Ayuda a pensar con más claridad, concentrarse
+                    mejor y tomar decisiones más efectivas.</li>
+                <li><strong>Fortalece la memoria:</strong> Permite la consolidación y procesamiento de recuerdos,
+                    crucial para la memoria a largo plazo.</li>
+            </ol>
+
+            <h3><strong>Beneficios físicos</strong></h3>
+            <ol>
+                <li><strong>Mejora el metabolismo:</strong> Un descanso adecuado puede influir positivamente en su
+                    funcionamiento, reduciendo riesgos de enfermedades.</li>
+                <li><strong>Reduce la inflamación:</strong> Dormir lo suficiente está relacionado con una disminución de
+                    inflamación en el cuerpo.</li>
+                <li><strong>Previene el agotamiento:</strong> Reduce la probabilidad de desarrollar <em>burnout</em>,
+                    caracterizado por cansancio extremo y falta de motivación.</li>
+            </ol>
+
+            <h3><strong>Cómo incorporar el descanso mental</strong></h3>
+            <ol>
+                <li><strong>Programa descansos:</strong> Incluye pausas cortas y regulares durante actividades
+                    mentalmente exigentes.</li>
+                <li><strong>Cambia de tarea:</strong> Alterna tareas difíciles con otras más sencillas como doblar ropa
+                    o armar un rompecabezas.</li>
+                <li><strong>Escribe un diario:</strong> Anotar pensamientos ayuda a “descargar” la mente y reducir el
+                    exceso de pensamiento.</li>
+                <li><strong>Practica la atención plena:</strong> Meditación o concentración en sensaciones físicas para
+                    calmar la mente.</li>
+                <li><strong>Desconecta de los estímulos:</strong> Cierra los ojos, evita pantallas brillantes o
+                    desconéctate de dispositivos electrónicos para darle un descanso a tu sistema nervioso.</li>
+            </ol>
+        </div>
+
+
+        <!-- seccion 4 -->
+        <div id="ej4" class="section" style="display:none;">
+            <h2><strong>Técnicas para descansar la mente</strong></h2>
+            <p>
+                Para <strong>descansar la mente</strong>, se pueden usar técnicas de relajación como la
+                <strong>respiración profunda</strong> y la <strong>meditación</strong>,
+                enfocadas en la atención plena y la calma.
+                También ayudan actividades como el ejercicio físico (yoga o tai chi), la escritura libre para liberar
+                pensamientos,
+                y el uso de los sentidos mediante aromaterapia, musicoterapia o actividades artísticas como pintar.
+            </p>
+
+            <h3><strong>Técnicas de relajación física y mental</strong></h3>
+            <ol>
+                <li><strong>Respiración profunda:</strong> Siéntate o acuéstate, coloca una mano en el estómago y otra
+                    en el pecho.
+                    Inhala lentamente por la nariz hasta sentir que el estómago se eleva, mantén la respiración un
+                    momento y exhala lentamente sintiendo cómo baja.</li>
+                <li><strong>Meditación:</strong> Reduce el estrés y la autocrítica. Puedes comenzar con meditaciones
+                    guiadas o con <em>mindfulness</em> para centrar tu atención en el presente y calmar la mente.</li>
+                <li><strong>Yoga y Tai Chi:</strong> Ambas prácticas combinan movimientos suaves con respiración
+                    profunda para aumentar la conciencia corporal y liberar ansiedad.</li>
+                <li><strong>Relajación muscular progresiva:</strong> Tensa y luego relaja distintos grupos musculares,
+                    empezando por los pies y subiendo hasta la cabeza.</li>
+                <li><strong>Escritura libre:</strong> Dedica unos minutos a escribir todo lo que se te ocurra sin juzgar
+                    ni organizar. El objetivo es liberar pensamientos acumulados.</li>
+                <li><strong>Ejercicios de visualización:</strong> Imagina lugares o situaciones relajantes: una pared
+                    blanca, un paisaje natural o un recuerdo feliz.</li>
+                <li><strong>Grounding (poner los pies en la tierra):</strong> Camina descalzo sobre tierra o césped
+                    durante unos minutos para conectar con el presente y la naturaleza.</li>
+            </ol>
+
+            <img src="meditacion.jpg" alt="meditacion"
+                style="width:350px; float:right; margin-left:20px; border-radius:10px;">
+
+            <h3><strong>Otras técnicas</strong></h3>
+            <ol>
+                <li><strong>Actividades creativas:</strong> Pintar, dibujar o escuchar música pueden relajar la mente y
+                    reducir el estrés.</li>
+                <li><strong>Bañarse con agua tibia o recibir masajes:</strong> Ayudan a relajar el cuerpo y la mente.
+                </li>
+                <li><strong>Aromaterapia:</strong> Usa aceites esenciales como lavanda para crear un ambiente de calma.
+                </li>
+                <li><strong>Pausas cortas:</strong> En medio del día, toma descansos de dos minutos para observar tu
+                    respiración o simplemente contemplar tu entorno sin usar el móvil.</li>
+                <li><strong>Organiza tus pensamientos:</strong> Una vez por semana, dedica tiempo a ordenar tus
+                    pendientes para “descargar” tu mente y estar más presente.</li>
+            </ol>
+        </div>
+
+        <!-- seccion 5 -->
+        <div id="ej5" class="section" style="display:none;">
+            <h2><strong>Efectos del estrés en la mente</strong></h2>
+            <p>
+                El <strong>estrés</strong> afecta la mente al interferir con funciones cognitivas como la concentración,
+                la memoria y la toma de decisiones.
+                También puede provocar problemas de salud mental como <strong>ansiedad</strong> y
+                <strong>depresión</strong>.
+                El estrés crónico altera funciones ejecutivas del cerebro, afecta el estado de ánimo y modifica los
+                patrones de sueño.
+            </p>
+
+            <img src="estres.jpg" alt="estres" style="width:350px; float:right; margin-left:20px; border-radius:10px;">
+
+            <h3><strong>Impactos del estrés en la mente</strong></h3>
+            <ol>
+                <li><strong>Función cognitiva:</strong> Dificulta la concentración, la memoria de trabajo y la toma de
+                    decisiones, generando una sensación de <em>"bloqueo mental"</em>.</li>
+                <li><strong>Salud mental:</strong> Contribuye al desarrollo de trastornos como la ansiedad y la
+                    depresión.</li>
+                <li><strong>Regulación emocional:</strong> Aumenta la irritabilidad, el mal humor y reduce la paciencia.
+                </li>
+                <li><strong>Salud cerebral:</strong> El estrés crónico afecta la flexibilidad mental, la creatividad y
+                    las áreas del cerebro responsables de la memoria y el aprendizaje.</li>
+                <li><strong>Sueño:</strong> Dificulta conciliar y mantener el sueño reparador, lo que empeora el estado
+                    de ánimo y el pensamiento.</li>
+            </ol>
+
+            <h3><strong>Cómo el estrés afecta el cerebro</strong></h3>
+            <ol>
+                <li>El estrés activa un sistema de alarma en el cerebro, liberando hormonas como el
+                    <strong>cortisol</strong>.</li>
+                <li>El cortisol afecta el <strong>hipocampo</strong>, área clave para la memoria, y la <strong>corteza
+                        prefrontal</strong>, encargada de funciones ejecutivas como la planificación y la concentración.
+                </li>
+                <li>Cuando el estrés se vuelve crónico, estas hormonas dañan neuronas y reducen la capacidad del cerebro
+                    para adaptarse, afectando así las funciones cognitivas.</li>
+            </ol>
+        </div>
+
+        <!-- seccion 6 -->
+        <div id="ej6" class="section" style="display:none;">
+            <img src="jovenessindormir.jpg" alt="descanso"
+                style="width:250px; float:left; margin-right:20px; border-radius:10px;">
+
+            <h2><strong>Descanso mental en adolescentes</strong></h2>
+            <p>
+                El <strong>descanso mental en adolescentes</strong> es esencial para su salud física y mental.
+                Se logra principalmente asegurando de <strong>8 a 10 horas de sueño nocturno</strong>
+                y manteniendo rutinas saludables.
+                Es recomendable establecer horarios de sueño regulares, evitar aparatos electrónicos y cafeína antes de
+                dormir,
+                y fomentar la actividad física y la relajación diaria.
+            </p>
+
+            <h3><strong>Estrategias para el descanso mental</strong></h3>
+
+            <h4><strong>Sueño</strong></h4>
+            <ol>
+                <li><strong>Duración:</strong> Dormir entre <strong>8 y 10 horas</strong> por noche para apoyar el
+                    rápido desarrollo del cuerpo y el cerebro.</li>
+                <li><strong>Rutina:</strong> Establecer horarios regulares para acostarse y levantarse todos los días,
+                    incluso fines de semana.</li>
+                <li><strong>Ambiente:</strong> Crear un entorno adecuado: habitación oscura, fresca y tranquila.</li>
+                <li><strong>Desconexión:</strong> Evitar pantallas al menos una hora antes de dormir. La luz azul
+                    estimula la mente y dificulta el sueño. Se recomienda cargar el celular fuera de la habitación.</li>
+            </ol>
+
+            <h4><strong>Estilo de vida</strong></h4>
+            <ol>
+                <li><strong>Actividad física:</strong> Mantenerse activo durante el día, evitando ejercicios intensos
+                    cerca de la hora de dormir.</li>
+                <li><strong>Alimentación:</strong> Evitar la cafeína por la tarde o noche (café, té, refrescos y
+                    chocolate).</li>
+            </ol>
+
+            <h4><strong>Rutina y relajación</strong></h4>
+            <ol>
+                <li><strong>Desconexión mental:</strong> Crear un ritual nocturno de relajación como un baño tibio,
+                    lectura o música tranquila.</li>
+                <li><strong>Gestión del tiempo:</strong> Organizar horarios que incluyan tiempo de recreación y descanso
+                    para reducir el estrés y evitar la sobrecarga académica.</li>
+            </ol>
+
+            <h3><strong>Beneficios del descanso mental</strong></h3>
+            <ol>
+                <li><strong>Mejora el rendimiento académico.</strong></li>
+                <li><strong>Reduce la irritabilidad, ansiedad y otros problemas emocionales.</strong></li>
+                <li><strong>Fortalece la capacidad de relacionarse con otros.</strong></li>
+                <li><strong>Salud a largo plazo:</strong> Ayuda a mantener un peso saludable, protege la salud
+                    cardiovascular y mejora la función cognitiva.</li>
+            </ol>
+
+            <h3><strong>Apoyo familiar y profesional</strong></h3>
+            <ol>
+                <li><strong>Apoyo familiar:</strong> Fomentar un ambiente de diálogo, comprensión y apoyo emocional.
+                </li>
+                <li><strong>Ayuda profesional:</strong> Si existen problemas de salud mental o estrés significativo, es
+                    importante acudir a psicólogos o psiquiatras, igual de esencial que ir al médico por un problema
+                    físico.</li>
+            </ol>
+
+            <div class="bottom-buttons">
+                <a href="conexion.html" target="_blank">¿Que es la conexión social?</a>
+                <a href="mentalingles.html">Version en ingles</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
